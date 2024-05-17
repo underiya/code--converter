@@ -8,8 +8,10 @@ const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(cors());
+
 app.post("/", async (req, res) => {
   const { inputCode, targetLanguage } = req.body;
+
   try {
     let code = await convertCode(inputCode, targetLanguage);
     res.json({
@@ -20,6 +22,7 @@ app.post("/", async (req, res) => {
     res.json({ msg: "Error" });
   }
 });
+
 app.listen(port, () => {
   console.log(`server is running at ${port}`);
 });
